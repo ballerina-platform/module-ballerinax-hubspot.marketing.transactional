@@ -10,11 +10,9 @@
 
 [//]: # (TODO: Add overview mentioning the purpose of the module, supported REST API versions, and other high-level details.)
 
-[HubSpot](https://www.hubspot.com/our-story) is a customer management system designed to help bussinesses to managae and streamline their marketing,sales and customer service activities.
+"[HubSpot](https://www.hubspot.com/) is an AI-powered customer relationship management (CRM) platform. 
 
-The ballerinax/hubspot package offers APIs to connect and interact with [HubSpot API](https://developers.hubspot.com/docs/reference/api/overview) endpoints, specifically based on [HubSpot API v3](https://developers.hubspot.com/changelog/crm-api-v3-is-generally-available).
-
-Setup guide
+The ballerinax/hubspot.marketing.transactional offers APIs to connect and interact with the [marketing.transactional API](https://developers.hubspot.com/docs/reference/api/marketing/emails/transactional-emails) endpoints, specifically based on the [API guide](https://developers.hubspot.com/docs/guides/api/marketing/emails/transactional-emails)"
 
 ## Setup guide
 

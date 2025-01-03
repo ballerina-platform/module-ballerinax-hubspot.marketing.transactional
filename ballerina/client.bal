@@ -11,7 +11,7 @@ public isolated client class Client {
     # + config - The configurations to be used when initializing the `connector` 
     # + serviceUrl - URL of the target service 
     # + return - An error if connector initialization failed 
-    public isolated function init(ConnectionConfig config, string serviceUrl = "https://api.hubapi.com") returns error? {
+    public isolated function init(ConnectionConfig config, string serviceUrl = "https://api.hubapi.com/marketing/v3/transactional") returns error? {
         http:ClientConfiguration httpClientConfig = {httpVersion: config.httpVersion, timeout: config.timeout, forwarded: config.forwarded, poolConfig: config.poolConfig, compression: config.compression, circuitBreaker: config.circuitBreaker, retryConfig: config.retryConfig, validation: config.validation};
         do {
             if config.http1Settings is ClientHttp1Settings {
@@ -45,8 +45,8 @@ public isolated client class Client {
         return;
     }
 
-    resource isolated function delete marketing/v3/'transactional/smtp\-tokens/[string tokenId](map<string|string[]> headers = {}) returns http:Response|error {
-        string resourcePath = string `/marketing/v3/transactional/smtp-tokens/${getEncodedUri(tokenId)}`;
+    resource isolated function delete smtp\-tokens/[string tokenId](map<string|string[]> headers = {}) returns http:Response|error {
+        string resourcePath = string `/smtp-tokens/${getEncodedUri(tokenId)}`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {
             headerValues["private-app-legacy"] = self.apiKeyConfig?.private\-app\-legacy;
@@ -55,8 +55,8 @@ public isolated client class Client {
         return self.clientEp->delete(resourcePath, headers = httpHeaders);
     }
 
-    resource isolated function get marketing/v3/'transactional/smtp\-tokens(map<string|string[]> headers = {}, *GetMarketingV3TransactionalSmtpTokens_gettokenspageQueries queries) returns CollectionResponseSmtpApiTokenViewForwardPaging|error {
-        string resourcePath = string `/marketing/v3/transactional/smtp-tokens`;
+    resource isolated function get smtp\-tokens(map<string|string[]> headers = {}, *GetMarketingV3TransactionalSmtpTokens_gettokenspageQueries queries) returns CollectionResponseSmtpApiTokenViewForwardPaging|error {
+        string resourcePath = string `/smtp-tokens`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {
             headerValues["private-app-legacy"] = self.apiKeyConfig?.private\-app\-legacy;
@@ -66,8 +66,8 @@ public isolated client class Client {
         return self.clientEp->get(resourcePath, httpHeaders);
     }
 
-    resource isolated function get marketing/v3/'transactional/smtp\-tokens/[string tokenId](map<string|string[]> headers = {}) returns SmtpApiTokenView|error {
-        string resourcePath = string `/marketing/v3/transactional/smtp-tokens/${getEncodedUri(tokenId)}`;
+    resource isolated function get smtp\-tokens/[string tokenId](map<string|string[]> headers = {}) returns SmtpApiTokenView|error {
+        string resourcePath = string `/smtp-tokens/${getEncodedUri(tokenId)}`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {
             headerValues["private-app-legacy"] = self.apiKeyConfig?.private\-app\-legacy;
@@ -76,8 +76,8 @@ public isolated client class Client {
         return self.clientEp->get(resourcePath, httpHeaders);
     }
 
-    resource isolated function post marketing/v3/'transactional/single\-email/send(PublicSingleSendRequestEgg payload, map<string|string[]> headers = {}) returns EmailSendStatusView|error {
-        string resourcePath = string `/marketing/v3/transactional/single-email/send`;
+    resource isolated function post single\-email/send(PublicSingleSendRequestEgg payload, map<string|string[]> headers = {}) returns EmailSendStatusView|error {
+        string resourcePath = string `/single-email/send`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {
             headerValues["private-app-legacy"] = self.apiKeyConfig?.private\-app\-legacy;
@@ -89,8 +89,8 @@ public isolated client class Client {
         return self.clientEp->post(resourcePath, request, httpHeaders);
     }
 
-    resource isolated function post marketing/v3/'transactional/smtp\-tokens(SmtpApiTokenRequestEgg payload, map<string|string[]> headers = {}) returns SmtpApiTokenView|error {
-        string resourcePath = string `/marketing/v3/transactional/smtp-tokens`;
+    resource isolated function post smtp\-tokens(SmtpApiTokenRequestEgg payload, map<string|string[]> headers = {}) returns SmtpApiTokenView|error {
+        string resourcePath = string `/smtp-tokens`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {
             headerValues["private-app-legacy"] = self.apiKeyConfig?.private\-app\-legacy;
@@ -102,8 +102,8 @@ public isolated client class Client {
         return self.clientEp->post(resourcePath, request, httpHeaders);
     }
 
-    resource isolated function post marketing/v3/'transactional/smtp\-tokens/[string tokenId]/password\-reset(map<string|string[]> headers = {}) returns SmtpApiTokenView|error {
-        string resourcePath = string `/marketing/v3/transactional/smtp-tokens/${getEncodedUri(tokenId)}/password-reset`;
+    resource isolated function post smtp\-tokens/[string tokenId]/password\-reset(map<string|string[]> headers = {}) returns SmtpApiTokenView|error {
+        string resourcePath = string `/smtp-tokens/${getEncodedUri(tokenId)}/password-reset`;
         map<anydata> headerValues = {...headers};
         if self.apiKeyConfig is ApiKeysConfig {
             headerValues["private-app-legacy"] = self.apiKeyConfig?.private\-app\-legacy;

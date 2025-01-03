@@ -15,7 +15,7 @@
       "x-hubspot-introduction" : "Use the transactional email API to send emails from a dedicated IP address to your contacts for essential business transactions, including account updates or terms of service changes."
     },
     "servers" : [ {
-      "url" : "https://api.hubapi.com"
+      "url" : "https://api.hubapi.com/marketing/v3/transactional"
     } ],
     "tags" : [ {
       "name" : "Single send"
@@ -23,7 +23,7 @@
       "name" : "Public SMTP tokens"
     } ],
     "paths" : {
-      "/marketing/v3/transactional/single-email/send" : {
+      "/single-email/send" : {
         "post" : {
           "tags" : [ "Single send" ],
           "summary" : "Send a single transactional email asynchronously.",
@@ -64,7 +64,7 @@
           "x-hubspot-rate-limit-exemptions" : [ "daily", "ten-secondly" ]
         }
       },
-      "/marketing/v3/transactional/smtp-tokens" : {
+      "/smtp-tokens" : {
         "get" : {
           "tags" : [ "Public SMTP tokens" ],
           "summary" : "Query SMTP API tokens by campaign name or an emailCampaignId.",
@@ -172,7 +172,7 @@
           } ]
         }
       },
-      "/marketing/v3/transactional/smtp-tokens/{tokenId}/password-reset" : {
+      "/smtp-tokens/{tokenId}/password-reset" : {
         "post" : {
           "tags" : [ "Public SMTP tokens" ],
           "summary" : "Reset the password of an existing token.",
@@ -211,7 +211,7 @@
           } ]
         }
       },
-      "/marketing/v3/transactional/smtp-tokens/{tokenId}" : {
+      "/smtp-tokens/{tokenId}" : {
         "get" : {
           "tags" : [ "Public SMTP tokens" ],
           "summary" : "Query a single token by ID.",
@@ -309,7 +309,7 @@
             "completedAt" : {
               "type" : "string",
               "description" : "Time when the send was completed.",
-              "format" : "date-time"
+              "format" : "datetime"
             },
             "statusId" : {
               "type" : "string",
@@ -323,12 +323,12 @@
             "requestedAt" : {
               "type" : "string",
               "description" : "Time when the send was requested.",
-              "format" : "date-time"
+              "format" : "datetime"
             },
             "startedAt" : {
               "type" : "string",
               "description" : "Time when the send began processing.",
-              "format" : "date-time"
+              "format" : "datetime"
             },
             "status" : {
               "type" : "string",
@@ -433,7 +433,7 @@
             "created" : {
               "type" : "string",
               "description" : "Time of event creation.",
-              "format" : "date-time"
+              "format" : "datetime"
             },
             "id" : {
               "type" : "string",
@@ -515,7 +515,7 @@
             "createdAt" : {
               "type" : "string",
               "description" : "Timestamp generated when a token is created.",
-              "format" : "date-time"
+              "format" : "datetime"
             },
             "password" : {
               "type" : "string",
