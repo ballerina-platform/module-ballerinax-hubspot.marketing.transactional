@@ -1,4 +1,4 @@
-# Ballerina Ballerina HubSpot Marketing Transactional Connector connector
+# Ballerina HubSpot Marketing Transactional Connector 
 
 [![Build](https://github.com/ballerina-platform/module-ballerinax-hubspot.marketing.transactional/actions/workflows/ci.yml/badge.svg)](https://github.com/ballerina-platform/module-ballerinax-hubspot.marketing.transactional/actions/workflows/ci.yml)
 [![Trivy](https://github.com/ballerina-platform/module-ballerinax-hubspot.marketing.transactional/actions/workflows/trivy-scan.yml/badge.svg)](https://github.com/ballerina-platform/module-ballerinax-hubspot.marketing.transactional/actions/workflows/trivy-scan.yml)
@@ -102,6 +102,65 @@ curl --request POST \
 ## Quickstart
 
 [//]: # (TODO: Add a quickstart guide to demonstrate a basic functionality of the module, including sample code snippets.)
+
+
+To use the `HubSpot Transactional emails` connector in your Ballerina application, update the `.bal` file as follows:
+
+### Step 1: Import the module
+
+Import the `hubspot.marketing.transactional` module and `oauth2` module.
+
+```ballerina
+import ballerinax/hubspot.marketing.transactional;
+import ballerina/oauth2;
+```
+
+### Step 2: Instantiate a new connector
+
+1. Create a `Config.toml` file and, configure the obtained credentials obtained in the above steps as follows:
+
+   ```toml
+    clientId = <Client Id>
+    clientSecret = <Client Secret>
+    refreshToken = <Refresh Token>
+   ```
+
+2. Instantiate a `OAuth2RefreshTokenGrantConfig` with the obtained credentials and initialize the connector with it.
+
+    ```ballerina
+   configurable string clientId = ?;
+   configurable string clientSecret = ?;
+   configurable string refreshToken = ?;
+
+   ConnectionConfig config = {
+      auth: {
+         clientId,
+         clientSecret,
+         refreshToken,
+         credentialBearer: oauth2:POST_BODY_BEARER
+      }
+   };
+
+   final Client hubSpotClient = check new (config);
+   ```
+
+### Step 3: Invoke the connector operation
+
+Now, utilize the available connector operations. A sample usecase is shown below.
+
+#### Create a SMTP API Token
+
+```ballerina
+SmtpApiTokenRequestEgg payload = {
+        createContact: true,
+        campaignName: "Campaign1"
+    };
+
+SmtpApiTokenView|error response = check base_client->/smtp\-tokens.post(payload,{});
+```
+
+
+
 
 ## Examples
 
