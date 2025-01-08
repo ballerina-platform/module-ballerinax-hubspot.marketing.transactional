@@ -1,6 +1,6 @@
-import ballerinax/hubspot.marketing.'transactional as hstransactional;
 import ballerina/io;
 import ballerina/oauth2;
+import ballerinax/hubspot.marketing.'transactional as hstransactional;
 
 configurable string clientId = ?;
 configurable string clientSecret = ?;
@@ -12,7 +12,7 @@ hstransactional:OAuth2RefreshTokenGrantConfig auth = {
     clientSecret: clientSecret,
     refreshToken: refreshToken,
     credentialBearer: oauth2:POST_BODY_BEARER
-    };
+};
 
 hstransactional:ConnectionConfig config = {auth: auth};
 //authorized http client to access hubspot
@@ -25,14 +25,13 @@ public function main() returns error? {
         campaignName: "Campaign1"
     };
 
-    hstransactional:SmtpApiTokenView response = check base_client->/smtp\-tokens.post(payload,{});
+    hstransactional:SmtpApiTokenView response = check base_client->/smtp\-tokens.post(payload, {});
 
-    io:println("The created SMTP API Token has the id "+response.id);
+    io:println("The created SMTP API Token has the id " + response.id);
 
-
-    string tokenId=response.id;
+    string tokenId = response.id;
     hstransactional:SmtpApiTokenView out = check base_client->/smtp\-tokens/[tokenId].get({});
-    
-    io:println("The SMTP API Token with id "+tokenId+" has the campaign name "+out.campaignName);
+
+    io:println("The SMTP API Token with id " + tokenId + " has the campaign name " + out.campaignName);
     return;
 }

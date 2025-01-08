@@ -150,9 +150,9 @@ public type OAuth2RefreshTokenGrantConfig record {|
 |};
 
 public type NextPage record {
-    # 
+    #
     string link?;
-    # 
+    #
     string after;
 };
 
