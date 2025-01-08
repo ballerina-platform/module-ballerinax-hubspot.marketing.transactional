@@ -12,7 +12,7 @@
 
 "[HubSpot](https://www.hubspot.com/) is an AI-powered customer relationship management (CRM) platform. 
 
-The ballerinax/hubspot.marketing.transactional offers APIs to connect and interact with the [marketing.transactional API](https://developers.hubspot.com/docs/reference/api/marketing/emails/transactional-emails) endpoints, specifically based on the [API guide](https://developers.hubspot.com/docs/guides/api/marketing/emails/transactional-emails)"
+The ``ballerinax/hubspot.marketing.`transactional`` offers APIs to connect and interact with the [marketing.transactional API](https://developers.hubspot.com/docs/reference/api/marketing/emails/transactional-emails) endpoints, specifically based on the [API guide](https://developers.hubspot.com/docs/guides/api/marketing/emails/transactional-emails)"
 
 ## Setup guide
 
@@ -108,10 +108,10 @@ To use the `HubSpot Transactional emails` connector in your Ballerina applicatio
 
 ### Step 1: Import the module
 
-Import the `hubspot.marketing.transactional` module and `oauth2` module.
+Import the ``hubspot.marketing.`transactional`` module and `oauth2` module.
 
 ```ballerina
-import ballerinax/hubspot.marketing.transactional;
+import ballerinax/hubspot.marketing.`transactional;
 import ballerina/oauth2;
 ```
 
@@ -158,13 +158,11 @@ SmtpApiTokenRequestEgg payload = {
 
 SmtpApiTokenView|error response = check base_client->/smtp\-tokens.post(payload,{});
 ```
-
-
-
-
 ## Examples
 
 The `Ballerina HubSpot Marketing Transactional Connector` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/module-ballerinax-hubspot.marketing.transactional/tree/main/examples/), covering the following use cases:
+
+1. [Manage Tokens](/examples/manage-tokens) - see how the Hubspot API can be used to create SMTP API token and query it.
 
 [//]: # (TODO: Add examples)
 
