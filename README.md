@@ -154,7 +154,7 @@ SmtpApiTokenRequestEgg payload = {
         campaignName: "Campaign1"
     };
 
-SmtpApiTokenView|error response = check base_client->/smtp\-tokens.post(payload,{});
+SmtpApiTokenView response = check base_client->/smtp\-tokens.post(payload,{});
 ```
 ## Examples
 
