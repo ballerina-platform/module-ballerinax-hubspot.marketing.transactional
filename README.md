@@ -101,8 +101,6 @@ curl --request POST \
 
 ## Quickstart
 
-[//]: # (TODO: Add a quickstart guide to demonstrate a basic functionality of the module, including sample code snippets.)
-
 
 To use the `HubSpot Transactional emails` connector in your Ballerina application, update the `.bal` file as follows:
 
