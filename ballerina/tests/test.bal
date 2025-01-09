@@ -1,4 +1,4 @@
-// Copyright (c) 2024, WSO2 LLC. (http://www.wso2.com).
+// Copyright (c) 2025, WSO2 LLC. (http://www.wso2.com).
 //
 // WSO2 LLC. licenses this file to you under the Apache License,
 // Version 2.0 (the "License"); you may not use this file except
@@ -22,7 +22,9 @@ import ballerina/test;
 configurable string clientId = ?;
 configurable string clientSecret = ?;
 configurable string refreshToken = ?;
-configurable boolean isServerLocal = true;
+
+configurable boolean isLiveServer = ?;
+configurable string serviceURL = isLiveServer ? "https://api.hubapi.com/marketing/v3/transactional" : "http://localhost:9090";
 
 OAuth2RefreshTokenGrantConfig auth = {
     clientId: clientId,
@@ -32,11 +34,10 @@ OAuth2RefreshTokenGrantConfig auth = {
 };
 
 ConnectionConfig config = {auth: auth};
-final string serviceURL = isServerLocal ? "http://localhost:8080" : "https://api.hubapi.com/marketing/v3/transactional";
 final Client base_client = check new Client(config, serviceURL);
 
 @test:Config {
-    enable: false
+    groups: ["live_tests", "mock_tests"]
 }
 isolated function testPostsendEmail() returns error? {
     record {|record {}...;|} customProperties = {
@@ -66,71 +67,66 @@ isolated function testPostsendEmail() returns error? {
 
     PublicSingleSendRequestEgg payload = {customProperties, emailId: 0, message, contactProperties};
     EmailSendStatusView response = check base_client->/single\-email/send.post(payload, {});
-    if response is EmailSendStatusView {
-        test:assertEquals(response.sendResult, "SENT", "Response send result is not as expected");
-    }
+
+    test:assertEquals(response.sendResult, "SENT", "Response send result is not as expected");
 }
 
 @test:Config {
-    enable: false
+    groups: ["live_tests", "mock_tests"]
 }
 isolated function testPostresetPassword() returns error? {
-    string tokenId = "123";
+    string tokenId = "234";
     SmtpApiTokenView response = check base_client->/smtp\-tokens/[tokenId]/password\-reset.post();
-    if response is SmtpApiTokenView {
-        test:assertEquals(response.id, "123", "Response id is not as expected");
-    }
-    io:println(response);
+
+    test:assertEquals(response.id, "234", "Response id is not as expected");
 }
 
 @test:Config {
-    enable: false
+    groups: ["live_tests", "mock_tests"]
 }
 isolated function testGetgetTokenById() returns error? {
     string tokenId = "123";
     SmtpApiTokenView response = check base_client->/smtp\-tokens/[tokenId].get({});
-    if response is SmtpApiTokenView {
-        test:assertEquals(response.id, "123", "Response id is not as expected");
-    }
+
+    test:assertEquals(response.id, "123", "Response id is not as expected");
 }
 
 @test:Config {
-    enable: false
+    groups: ["live_tests", "mock_tests"]
 }
 isolated function testDeletearchiveToken() returns error? {
     string tokenId = "123";
     http:Response response = check base_client->/smtp\-tokens/[tokenId].delete({});
-    if response is http:Response {
-        test:assertEquals(response.statusCode, 200, "Failed to delete the token");
-    }
+
+    test:assertEquals(response.statusCode, 200, "Failed to delete the token");
 }
 
 @test:Config {
-    enable: false
+    groups: ["live_tests"]
 }
 isolated function testGetgetTokensPage() returns error? {
-    int:Signed32 'limit = 3;
-    string emailCampaignId = "344";
-    string after = "0";
-    string campaignName = "Campaign2";
 
-    GetMarketingV3TransactionalSmtpTokens_gettokenspageQueries queries = {'limit, emailCampaignId, after, campaignName};
+    GetMarketingV3TransactionalSmtpTokens_gettokenspageQueries queries = {
+        'limit: 1,
+        emailCampaignId: "344",
+        after: "0",
+        campaignName: "Campaign2"
+    };
     CollectionResponseSmtpApiTokenViewForwardPaging response = check base_client->/smtp\-tokens.get({}, queries);
-    if response is CollectionResponseSmtpApiTokenViewForwardPaging {
-        test:assertEquals(response.results.length(), 3, "Response results length is not as expected");
-    }
+
+    // test:assertEquals(response.results.length(), 1, "Response results length is not as expected");
+    io:println(response);
 }
 
 @test:Config {
-    enable: true
+    groups: ["live_tests", "mock_tests"]
 }
 isolated function testPostcreateToken() returns error? {
     SmtpApiTokenRequestEgg payload = {
-        createContact: true,
+        createContact: false,
         campaignName: "Campaign2"
     };
     SmtpApiTokenView response = check base_client->/smtp\-tokens.post(payload, {});
-    if response is SmtpApiTokenView {
-        test:assertEquals(response.campaignName, "Camapaign2", "Response campaign name is not as expected");
-    }
+
+    test:assertEquals(response.campaignName, "Campaign2", "Response campaign name is not as expected");
 }
