@@ -1,8 +1,7 @@
 [package]
-org = "WSO2"
+org = "wSO2"
 name = "manage_tokens"
 version = "0.1.0"
-repository="local"
 
 [build-options]
 observabilityIncluded = true

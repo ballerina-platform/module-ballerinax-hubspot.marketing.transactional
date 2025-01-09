@@ -2,12 +2,10 @@
 
 The `ballerinax/hubspot.marketing.transactional` connector provides practical examples illustrating usage in various scenarios.
 
-[//]: # (TODO: Add examples)
 1. [Manage Tokens](/examples/manage-tokens) - see how the Hubspot API can be used to create SMTP API token and query it.
 
 ## Prerequisites
 
-[//]: # (TODO: Add prerequisites)
 
 1. Generate hubspot credentials to authenticate the connector as described in the [setup guide](README.md).
 
