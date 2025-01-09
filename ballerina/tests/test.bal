@@ -33,8 +33,7 @@ OAuth2RefreshTokenGrantConfig auth = {
     credentialBearer: oauth2:POST_BODY_BEARER // this line should be added in to when you are going to create auth object.
 };
 
-ConnectionConfig config = {auth: auth};
-final Client base_client = check new Client(config, serviceURL);
+final Client hubSpotTransactional = check new Client({ auth }, serviceURL);
 
 @test:Config {
     groups: ["live_tests", "mock_tests"]
