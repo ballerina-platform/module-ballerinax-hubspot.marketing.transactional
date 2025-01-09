@@ -30,10 +30,10 @@ OAuth2RefreshTokenGrantConfig auth = {
     clientId: clientId,
     clientSecret: clientSecret,
     refreshToken: refreshToken,
-    credentialBearer: oauth2:POST_BODY_BEARER 
+    credentialBearer: oauth2:POST_BODY_BEARER
 };
 
-final Client hubSpotTransactional = check new ({ auth }, serviceURL);
+final Client hubSpotTransactional = check new ({auth}, serviceURL);
 
 @test:Config {
     groups: ["live_tests", "mock_tests"]
@@ -101,20 +101,20 @@ isolated function testDeletearchiveToken() returns error? {
 }
 
 @test:Config {
-    groups: ["live_tests"]
+    groups: ["live_tests", "mock_tests"]
 }
 isolated function testGetgetTokensPage() returns error? {
 
     GetMarketingV3TransactionalSmtpTokens_gettokenspageQueries queries = {
-        'limit: 1,
+        'limit: 2,
         emailCampaignId: "344",
         after: "0",
         campaignName: "Campaign2"
     };
-    CollectionResponseSmtpApiTokenViewForwardPaging response = check hubSpotTransactional->/smtp\-tokens.get({}, queries);
-
-    // test:assertEquals(response.results.length(), 1, "Response results length is not as expected");
+    io:println(queries);
+    CollectionResponseSmtpApiTokenViewForwardPaging response = check hubSpotTransactional->/smtp\-tokens.get(queries = queries);
     io:println(response);
+    test:assertEquals(response.results.length(), 2, "Response results length is not as expected");
 }
 
 @test:Config {

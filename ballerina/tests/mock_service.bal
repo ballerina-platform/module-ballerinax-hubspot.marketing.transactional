@@ -5,13 +5,13 @@ listener http:Listener httpListener = new (9090);
 
 http:Service mockService = service object {
 
-    resource isolated function delete smtp\-tokens/[string tokenId](map<string|string[]> headers = {}) returns http:Response|error {
+    resource isolated function delete smtp\-tokens/[string tokenId](map<string|string[]> headers = {}) returns http:Response {
         http:Response response = new;
         response.statusCode = 200;
         return response;
     }
 
-    resource isolated function get smtp\-tokens/[string tokenId](map<string|string[]> headers = {}) returns SmtpApiTokenView|error {
+    resource isolated function get smtp\-tokens/[string tokenId](map<string|string[]> headers = {}) returns SmtpApiTokenView {
         return {
             "createdAt": "2025-01-08T13:58:35.669Z",
             "password": "string",
@@ -24,7 +24,7 @@ http:Service mockService = service object {
         };
     }
 
-    resource isolated function post single\-email/send(@http:Payload PublicSingleSendRequestEgg payload, map<string|string[]> headers = {}) returns EmailSendStatusView|error {
+    resource isolated function post single\-email/send(@http:Payload PublicSingleSendRequestEgg payload, map<string|string[]> headers = {}) returns EmailSendStatusView {
         return {
             "eventId": {
                 "created": "2025-01-08T13:58:35.631Z",
@@ -39,7 +39,7 @@ http:Service mockService = service object {
         };
     }
 
-    resource isolated function post smtp\-tokens(@http:Payload SmtpApiTokenRequestEgg payload, map<string|string[]> headers = {}) returns SmtpApiTokenView|error {
+    resource isolated function post smtp\-tokens(@http:Payload SmtpApiTokenRequestEgg payload, map<string|string[]> headers = {}) returns SmtpApiTokenView {
         return {
             "createdAt": "2025-01-08T13:58:35.710Z",
             "password": "string",
@@ -52,7 +52,7 @@ http:Service mockService = service object {
 
     }
 
-    resource isolated function post smtp\-tokens/[string tokenId]/password\-reset(map<string|string[]> headers = {}) returns SmtpApiTokenView|error {
+    resource isolated function post smtp\-tokens/[string tokenId]/password\-reset(map<string|string[]> headers = {}) returns SmtpApiTokenView {
         return {
             "createdAt": "2025-01-08T13:58:35.733Z",
             "password": "string",
@@ -62,6 +62,39 @@ http:Service mockService = service object {
             "emailCampaignId": "string",
             "campaignName": "string"
         };
+    }
+
+    resource function get smtp\-tokens(map<string|string[]> headers = {}) returns CollectionResponseSmtpApiTokenViewForwardPaging {
+        CollectionResponseSmtpApiTokenViewForwardPaging response = {
+            "paging": {
+                "next": {
+                    "link": "string",
+                    "after": "string"
+                }
+            },
+            "results": [
+                {
+                    "createdAt": "2025-01-08T13:58:35.669Z",
+                    "password": "string",
+                    "createdBy": "string",
+                    "createContact": true,
+                    "id": "123",
+                    "emailCampaignId": "string",
+                    "campaignName": "string"
+                },
+
+                {
+                    "createdAt": "2025-01-08T13:58:35.665Z",
+                    "password": "string",
+                    "createdBy": "string",
+                    "createContact": true,
+                    "id": "124",
+                    "emailCampaignId": "string",
+                    "campaignName": "string"
+                }
+            ]
+        };
+        return response;
     }
 };
 
