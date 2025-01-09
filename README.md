@@ -40,6 +40,8 @@ To add redirect url/s for the app, click the 'Auth' tab on top of the page, and 
 
 ![alt text](docs/setup/resources/hubspot-new-app-client-id-secret.png)
 
+#### 2. Setup OAuth 2.0 Flow
+
 Before proceeding with Quickstart, ensure you have obtained the Access Token and refresh Token using the following steps:
 
 1. Add necessary scopes for your app based on API your using. Go to the relevate [API reference](https://developers.hubspot.com/beta-docs/reference/api),  select the API  you have  and go through the operation.
