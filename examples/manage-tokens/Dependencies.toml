@@ -8,20 +8,6 @@ dependencies-toml-version = "2"
 distribution-version = "2201.10.3"
 
 [[package]]
-org = "WSO2"
-name = "manage_tokens"
-version = "0.1.0"
-dependencies = [
-	{org = "ballerina", name = "io"},
-	{org = "ballerina", name = "oauth2"},
-	{org = "ballerinai", name = "observe"},
-	{org = "ballerinax", name = "hubspot.marketing.transactional"}
-]
-modules = [
-	{org = "WSO2", packageName = "manage_tokens", moduleName = "manage_tokens"}
-]
-
-[[package]]
 org = "ballerina"
 name = "auth"
 version = "2.12.0"
@@ -305,11 +291,26 @@ version = "0.1.0"
 dependencies = [
 	{org = "ballerina", name = "http"},
 	{org = "ballerina", name = "io"},
+	{org = "ballerina", name = "log"},
 	{org = "ballerina", name = "oauth2"},
 	{org = "ballerina", name = "url"},
 	{org = "ballerinai", name = "observe"}
 ]
 modules = [
 	{org = "ballerinax", packageName = "hubspot.marketing.transactional", moduleName = "hubspot.marketing.transactional"}
+]
+
+[[package]]
+org = "wSO2"
+name = "manage_tokens"
+version = "0.1.0"
+dependencies = [
+	{org = "ballerina", name = "io"},
+	{org = "ballerina", name = "oauth2"},
+	{org = "ballerinai", name = "observe"},
+	{org = "ballerinax", name = "hubspot.marketing.transactional"}
+]
+modules = [
+	{org = "wSO2", packageName = "manage_tokens", moduleName = "manage_tokens"}
 ]
 

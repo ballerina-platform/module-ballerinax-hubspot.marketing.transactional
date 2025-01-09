@@ -65,7 +65,7 @@ isolated function testPostsendEmail() returns error? {
     };
 
     PublicSingleSendRequestEgg payload = {customProperties, emailId: 0, message, contactProperties};
-    EmailSendStatusView response = check base_client->/single\-email/send.post(payload, {});
+    EmailSendStatusView response = check hubSpotTransactional->/single\-email/send.post(payload, {});
 
     test:assertEquals(response.sendResult, "SENT", "Response send result is not as expected");
 }
@@ -75,7 +75,7 @@ isolated function testPostsendEmail() returns error? {
 }
 isolated function testPostresetPassword() returns error? {
     string tokenId = "234";
-    SmtpApiTokenView response = check base_client->/smtp\-tokens/[tokenId]/password\-reset.post();
+    SmtpApiTokenView response = check hubSpotTransactional->/smtp\-tokens/[tokenId]/password\-reset.post();
 
     test:assertEquals(response.id, "234", "Response id is not as expected");
 }
@@ -85,7 +85,7 @@ isolated function testPostresetPassword() returns error? {
 }
 isolated function testGetgetTokenById() returns error? {
     string tokenId = "123";
-    SmtpApiTokenView response = check base_client->/smtp\-tokens/[tokenId].get({});
+    SmtpApiTokenView response = check hubSpotTransactional->/smtp\-tokens/[tokenId].get({});
 
     test:assertEquals(response.id, "123", "Response id is not as expected");
 }
@@ -95,7 +95,7 @@ isolated function testGetgetTokenById() returns error? {
 }
 isolated function testDeletearchiveToken() returns error? {
     string tokenId = "123";
-    http:Response response = check base_client->/smtp\-tokens/[tokenId].delete({});
+    http:Response response = check hubSpotTransactional->/smtp\-tokens/[tokenId].delete({});
 
     test:assertEquals(response.statusCode, 200, "Failed to delete the token");
 }
@@ -111,7 +111,7 @@ isolated function testGetgetTokensPage() returns error? {
         after: "0",
         campaignName: "Campaign2"
     };
-    CollectionResponseSmtpApiTokenViewForwardPaging response = check base_client->/smtp\-tokens.get({}, queries);
+    CollectionResponseSmtpApiTokenViewForwardPaging response = check hubSpotTransactional->/smtp\-tokens.get({}, queries);
 
     // test:assertEquals(response.results.length(), 1, "Response results length is not as expected");
     io:println(response);
@@ -125,7 +125,7 @@ isolated function testPostcreateToken() returns error? {
         createContact: false,
         campaignName: "Campaign2"
     };
-    SmtpApiTokenView response = check base_client->/smtp\-tokens.post(payload, {});
+    SmtpApiTokenView response = check hubSpotTransactional->/smtp\-tokens.post(payload, {});
 
     test:assertEquals(response.campaignName, "Campaign2", "Response campaign name is not as expected");
 }
