@@ -1,16 +1,12 @@
-## Overview
-
-[//]: # (TODO: Add overview mentioning the purpose of the module, supported REST API versions, and other high-level details.)
+# Overview
 
 "[HubSpot](https://www.hubspot.com/) is an AI-powered customer relationship management (CRM) platform. 
 
-The ``ballerinax/hubspot.marketing.`transactional`` offers APIs to connect and interact with the [marketing.transactional API](https://developers.hubspot.com/docs/reference/api/marketing/emails/transactional-emails) endpoints, specifically based on the [API guide](https://developers.hubspot.com/docs/guides/api/marketing/emails/transactional-emails)"
+The ``ballerinax/hubspot.marketing.`transactional`` offers APIs to connect and interact with the [Hubspot Marketing Transactional Emails API](https://developers.hubspot.com/docs/reference/api/marketing/emails/transactional-emails) endpoints, specifically based on the [HubSpot REST API](https://developers.hubspot.com/docs/reference/api/overview)"
 
 ## Setup guide
 
-[//]: # (TODO: Add detailed steps to obtain credentials and configure the module.)
-
-To use the HubSpot connector, you must have access to the HubSpot API through a [HubSpot developer account](https://developers.hubspot.com/get-started) and a project under it. If you do not have a HubSpot Developer account, you can sign up for one [here](https://app.hubspot.com/signup-hubspot/developers?_ga=2.207749649.2047916093.1734412948-232493525.1734412948&step=landing_page).
+To use the HubSpot Marketing Transactional Emails connector, you must have access to the HubSpot API through a HubSpot developer account and a HubSpot App under it. Therefore you need to register for a developer account at HubSpot if you don't have one already.
 
 ### Step 1: Create a HubSpot Developer Project
 
@@ -18,25 +14,25 @@ To use the HubSpot connector, you must have access to the HubSpot API through a 
 
 2. Click on the 'App' tab and select an existing project or create a new project for which you want API keys and Authentication Access. 
 
-![alt text](<../docs/setup/resources/hubspot-app-home.png>)
+![alt text](https://github.com/module-ballerinax-hubspot.marketing.transactional/tree/main/docs/setup/resources/hubspot-app-home.png)
 
 In order to create a new poject, you must provide a public app name and a redirect url/s. Optionally you can add a app logo and a description for the app.
 
-![alt text](../docs/setup/resources/hubspot-new-app-info.png)
+![alt text](https://github.com/module-ballerinax-hubspot.marketing.transactional/tree/main/docs/setup/resources/hubspot-new-app-info.png)
 
 To add redirect url/s for the app, click the 'Auth' tab on top of the page, and navigate to 'Redirect URLs' section.
 
-![alt text](../docs/setup/resources/hubspot-new-app-auth.png)
+![alt text](https://github.com/module-ballerinax-hubspot.marketing.transactional/tree/main/docs/setup/resources/hubspot-new-app-auth.png)
 
-![alt text](../docs/setup/resources/hubspot-new-app-redirect-url.png)
+![alt text](https://github.com/module-ballerinax-hubspot.marketing.transactional/tree/main/docs/setup/resources/hubspot-new-app-redirect-url.png)
 
 ### Setp 2. Obtain Client ID and Client Secret.
 
 1. After completing the project setup, you will be provided with your client id and client secret.  Make sure to save the provided client id and client secret.
 
-![alt text](../docs/setup/resources/hubspot-new-app-client-id-secret.png)
+![alt text](https://github.com/module-ballerinax-hubspot.marketing.transactional/tree/main/docs/setup/resources/hubspot-new-app-client-id-secret.png)
 
-### 2. Setup OAuth 2.0 Flow
+#### 2. Setup OAuth 2.0 Flow
 
 Before proceeding with Quickstart, ensure you have obtained the Access Token and refresh Token using the following steps:
 
@@ -44,7 +40,7 @@ Before proceeding with Quickstart, ensure you have obtained the Access Token and
 
 You will see the scope has defined below way
 
-![alt text](../docs/setup/resources/hubspot-new-app-scopes.png)
+![alt text](https://github.com/module-ballerinax-hubspot.marketing.transactional/tree/main/docs/setup/resources/hubspot-new-app-scopes.png)
 
 2. Obtained the authorization URL (Install URL) from the Auth Section under 'Sample install URL (OAuth)' section.  It will be in this format:
 
@@ -53,7 +49,7 @@ https://app.hubspot.com/oauth/authorize?client_id=<client_id>&redirect_uri=<redi
 ```
 3. Copy and paste the generated URL into your browser. This will redirect you to the HubSpot authorization page.
 
-![alt text](../docs/setup/resources/hubspot-oauth-consent-screen.png)
+![alt text](https://github.com/module-ballerinax-hubspot.marketing.transactional/tree/main/docs/setup/resources/hubspot-oauth-consent-screen.png)
 
 4. Once you authorize, you will be redirected to your specified redirect URI with an authorization code in the URL.
 
@@ -94,14 +90,14 @@ curl --request POST \
 ## Quickstart
 
 
-To use the `HubSpot Transactional emails` connector in your Ballerina application, update the `.bal` file as follows:
+To use the `HubSpot Transactional Emails` connector in your Ballerina application, update the `.bal` file as follows:
 
 ### Step 1: Import the module
 
 Import the ``hubspot.marketing.`transactional`` module and `oauth2` module.
 
 ```ballerina
-import ballerinax/hubspot.marketing.`transactional;
+import ballerinax/hubspot.marketing.`transactional as hsmtransactional;
 import ballerina/oauth2;
 ```
 
@@ -121,17 +117,14 @@ import ballerina/oauth2;
    configurable string clientId = ?;
    configurable string clientSecret = ?;
    configurable string refreshToken = ?;
-
-   ConnectionConfig config = {
-      auth: {
-         clientId,
-         clientSecret,
-         refreshToken,
-         credentialBearer: oauth2:POST_BODY_BEARER
-      }
+   
+   hsmtransactional:OAuth2RefreshTokenGrantConfig auth = {
+       clientId,
+       clientSecret,
+       refreshToken,
+       credentialBearer: oauth2:POST_BODY_BEARER
    };
-
-   final Client hubSpotClient = check new (config);
+   final hsmtransactional:Client hubSpotTransactional = check new ({ auth });
    ```
 
 ### Step 3: Invoke the connector operation
@@ -141,17 +134,14 @@ Now, utilize the available connector operations. A sample usecase is shown below
 #### Create a SMTP API Token
 
 ```ballerina
-SmtpApiTokenRequestEgg payload = {
-        createContact: true,
-        campaignName: "Campaign1"
-    };
-
-SmtpApiTokenView response = check base_client->/smtp\-tokens.post(payload,{});
+hsmtransactional:SmtpApiTokenRequestEgg payload = {
+    createContact: true,
+    campaignName: "Campaign1"
+};
+hsmtransactional:SmtpApiTokenView response = check hubSpotTransactional->/smtp\-tokens.post(payload);
 ```
 ## Examples
 
 The `Ballerina HubSpot Marketing Transactional Connector` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/module-ballerinax-hubspot.marketing.transactional/tree/main/examples/), covering the following use cases:
 
-1. [Manage Tokens](/examples/manage-tokens) - see how the Hubspot API can be used to create SMTP API token and query it.
-
-[//]: # (TODO: Add examples)
+1. [Manage Tokens](https://github.com/module-ballerinax-hubspot.marketing.transactional/tree/main/examples/manage-tokens) - see how the Hubspot API can be used to create SMTP API token and query it.
