@@ -30,10 +30,10 @@ OAuth2RefreshTokenGrantConfig auth = {
     clientId: clientId,
     clientSecret: clientSecret,
     refreshToken: refreshToken,
-    credentialBearer: oauth2:POST_BODY_BEARER // this line should be added in to when you are going to create auth object.
+    credentialBearer: oauth2:POST_BODY_BEARER 
 };
 
-final Client hubSpotTransactional = check new Client({ auth }, serviceURL);
+final Client hubSpotTransactional = check new ({ auth }, serviceURL);
 
 @test:Config {
     groups: ["live_tests", "mock_tests"]

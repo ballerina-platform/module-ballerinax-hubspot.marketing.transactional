@@ -98,7 +98,7 @@ curl --request POST \
 ## Quickstart
 
 
-To use the `HubSpot Transactional emails` connector in your Ballerina application, update the `.bal` file as follows:
+To use the `HubSpot Transactional Emails` connector in your Ballerina application, update the `.bal` file as follows:
 
 ### Step 1: Import the module
 
@@ -142,11 +142,11 @@ Now, utilize the available connector operations. A sample usecase is shown below
 #### Create a SMTP API Token
 
 ```ballerina
-SmtpApiTokenRequestEgg payload = {
+hsmtransactional:SmtpApiTokenRequestEgg payload = {
     createContact: true,
     campaignName: "Campaign1"
 };
-SmtpApiTokenView response = check hubSpotTransactional->/smtp\-tokens.post(payload);
+hsmtransactional:SmtpApiTokenView response = check hubSpotTransactional->/smtp\-tokens.post(payload);
 ```
 ## Examples
 
