@@ -38,12 +38,15 @@ public function main() returns error? {
         campaignName: "Campaign1"
     };
 
-    hstransactional:SmtpApiTokenView response = check hubSpotTransactional->/smtp\-tokens.post(payload, {});
+    hstransactional:SmtpApiTokenView response1 = check hubSpotTransactional->/smtp\-tokens.post(payload, {});
+    io:println(string `The created SMTP API Token has the id ${response1.id}`);
 
-    io:println(string `The created SMTP API Token has the id ${response.id}`);
+    string tokenId = response1.id;
 
-    string tokenId = response.id;
-    hstransactional:SmtpApiTokenView out = check hubSpotTransactional->/smtp\-tokens/[tokenId].get({});
+    hstransactional:SmtpApiTokenView response2 = check hubSpotTransactional->/smtp\-tokens/[tokenId].get({});
+    io:println(string `The SMTP API Token with id ${tokenId} has the campaign name ${response2.campaignName}`);
 
-    io:println(string `The SMTP API Token with id ${tokenId} has the campaign name ${out.campaignName}`);
+    hstransactional:SmtpApiTokenView response3 = check hubSpotTransactional->/smtp\-tokens/[tokenId]/password\-reset.post();
+    io:println(string `The password of the SMTP API Token with id ${tokenId} has been reset`);
+
 }
