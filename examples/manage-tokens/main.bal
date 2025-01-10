@@ -22,19 +22,16 @@ configurable string clientId = ?;
 configurable string clientSecret = ?;
 configurable string refreshToken = ?;
 
-//auth confguration for hubspot
-
 public function main() returns error? {
 
     hstransactional:OAuth2RefreshTokenGrantConfig auth = {
-    clientId: clientId,
-    clientSecret: clientSecret,
-    refreshToken: refreshToken,
-    credentialBearer: oauth2:POST_BODY_BEARER
+        clientId: clientId,
+        clientSecret: clientSecret,
+        refreshToken: refreshToken,
+        credentialBearer: oauth2:POST_BODY_BEARER
     };
 
-    final hstransactional:Client hubSpotTransactional = check new ({ auth });
-
+    final hstransactional:Client hubSpotTransactional = check new ({auth});
 
     hstransactional:SmtpApiTokenRequestEgg payload = {
         createContact: true,
@@ -43,10 +40,10 @@ public function main() returns error? {
 
     hstransactional:SmtpApiTokenView response = check hubSpotTransactional->/smtp\-tokens.post(payload, {});
 
-    io:println("The created SMTP API Token has the id " + response.id);
+    io:println(string `The created SMTP API Token has the id ${response.id}`);
 
     string tokenId = response.id;
     hstransactional:SmtpApiTokenView out = check hubSpotTransactional->/smtp\-tokens/[tokenId].get({});
 
-    io:println("The SMTP API Token with id " + tokenId + " has the campaign name " + out.campaignName);
+    io:println(string `The SMTP API Token with id ${tokenId} has the campaign name ${out.campaignName}`);
 }
