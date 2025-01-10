@@ -1,5 +1,5 @@
 [package]
-org = "wSO2"
+org = "wso2"
 name = "manage_tokens"
 version = "0.1.0"
 
