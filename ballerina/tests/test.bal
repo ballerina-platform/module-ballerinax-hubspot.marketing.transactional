@@ -36,7 +36,7 @@ OAuth2RefreshTokenGrantConfig auth = {
 final Client hubSpotTransactional = check new ({auth}, serviceURL);
 
 @test:Config {
-    groups: ["live_tests", "mock_tests"]
+    groups: ["mock_tests"]
 }
 isolated function testPostsendEmail() returns error? {
     record {|record {}...;|} customProperties = {
@@ -71,7 +71,7 @@ isolated function testPostsendEmail() returns error? {
 }
 
 @test:Config {
-    groups: ["live_tests", "mock_tests"]
+    groups: ["mock_tests"]
 }
 isolated function testPostresetPassword() returns error? {
     string tokenId = "234";
@@ -81,7 +81,7 @@ isolated function testPostresetPassword() returns error? {
 }
 
 @test:Config {
-    groups: ["live_tests", "mock_tests"]
+    groups: ["mock_tests"]
 }
 isolated function testGetgetTokenById() returns error? {
     string tokenId = "123";
@@ -91,7 +91,7 @@ isolated function testGetgetTokenById() returns error? {
 }
 
 @test:Config {
-    groups: ["live_tests", "mock_tests"]
+    groups: ["mock_tests"]
 }
 isolated function testDeletearchiveToken() returns error? {
     string tokenId = "123";
@@ -101,7 +101,7 @@ isolated function testDeletearchiveToken() returns error? {
 }
 
 @test:Config {
-    groups: ["live_tests", "mock_tests"]
+    groups: ["mock_tests"]
 }
 isolated function testGetgetTokensPage() returns error? {
 
@@ -118,7 +118,7 @@ isolated function testGetgetTokensPage() returns error? {
 }
 
 @test:Config {
-    groups: ["live_tests", "mock_tests"]
+    groups: ["mock_tests"]
 }
 isolated function testPostcreateToken() returns error? {
     SmtpApiTokenRequestEgg payload = {
