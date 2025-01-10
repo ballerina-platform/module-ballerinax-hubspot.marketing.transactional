@@ -97,7 +97,7 @@ isolated function testDeletearchiveToken() returns error? {
     string tokenId = "123";
     http:Response response = check hubSpotTransactional->/smtp\-tokens/[tokenId].delete({});
 
-    test:assertEquals(response.statusCode, 200, "Failed to delete the token");
+    test:assertEquals(response.statusCode, 204, "Failed to delete the token");
 }
 
 @test:Config {

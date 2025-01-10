@@ -23,7 +23,7 @@ http:Service mockService = service object {
 
     resource isolated function delete smtp\-tokens/[string tokenId](map<string|string[]> headers = {}) returns http:Response {
         http:Response response = new;
-        response.statusCode = 200;
+        response.statusCode = 204;
         return response;
     }
 
