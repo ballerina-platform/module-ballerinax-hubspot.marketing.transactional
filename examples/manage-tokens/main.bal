@@ -47,6 +47,6 @@ public function main() returns error? {
     io:println(string `The SMTP API Token with id ${tokenId} has the campaign name ${response2.campaignName}`);
 
     hstransactional:SmtpApiTokenView response3 = check hubSpotTransactional->/smtp\-tokens/[tokenId]/password\-reset.post();
-    io:println(string `The password of the SMTP API Token with id ${tokenId} has been reset`);
+    io:println(string `The password of the SMTP API Token with id ${response3.id} has been reset`);
 
 }
