@@ -16,54 +16,100 @@ The ``ballerinax/hubspot.marketing.`transactional`` offers APIs to connect and i
 
 To use the HubSpot Marketing Transactional Emails connector, you must have access to the HubSpot API through a HubSpot developer account and a HubSpot App under it. Therefore you need to register for a developer account at HubSpot if you don't have one already.
 
-### Step 1: Create a HubSpot Developer Project
+### Step 1: Create/Login to a HubSpot Developer Account
 
-1. Open the [HubSpot Developer Portal](https://app.hubspot.com/login/?loginRedirectUrl=https%3A%2F%2Fapp.hubspot.com%2Fsignup-hubspot%2Fdevelopers%3F_ga%3D2.269102326.624948025.1734413225-1764281074.1734413225%26step%3Dlanding_page)
+If you have an account already, go to the [HubSpot developer portal](https://app.hubspot.com/)
 
-2. Click on the 'App' tab and select an existing project or create a new project for which you want API keys and Authentication Access. 
+If you don't have a HubSpot Developer Account you can sign up to a free account [here](https://developers.hubspot.com/get-started)
 
-![alt text](https://github.com/module-ballerinax-hubspot.marketing.transactional/tree/main/docs/setup/resources/hubspot-app-home.png)
+### Step 2 (Optional): Create a [Developer Test Account](https://developers.hubspot.com/beta-docs/getting-started/account-types#developer-test-accounts) under your account
 
-In order to create a new poject, you must provide a public app name and a redirect url/s. Optionally you can add a app logo and a description for the app.
+Within app developer accounts, you can create developer test accounts to test apps and integrations without affecting any real HubSpot data.
 
-![alt text](https://github.com/module-ballerinax-hubspot.marketing.transactional/tree/main/docs/setup/resources/hubspot-new-app-info.png)
+**Note: These accounts are only for development and testing purposes. In production you should not use Developer Test Accounts.**
 
-To add redirect url/s for the app, click the 'Auth' tab on top of the page, and navigate to 'Redirect URLs' section.
+1. Go to Test Account section from the left sidebar.  
+   ![Hubspot developer portal](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.transactional/main/docs/setup/resources/test_acc_1.png)
 
-![alt text](https://github.com/module-ballerinax-hubspot.marketing.transactional/tree/main/docs/setup/resources/hubspot-new-app-auth.png)
+2. Click Create developer test account.  
+   ![Hubspot developer testacc](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.transactional/main/docs/setup/resources/test_acc_2.png)
 
-![alt text](https://github.com/module-ballerinax-hubspot.marketing.transactional/tree/main/docs/setup/resources/hubspot-new-app-redirect-url.png)
+3. In the dialogue box, give a name to your test account and click create.  
+   ![Hubspot developer testacc3](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.transactional/main/docs/setup/resources/test_acc_3.png)
 
-### Setp 2. Obtain Client ID and Client Secret.
+### Step 3: Create a HubSpot App under your account.
 
-1. After completing the project setup, you will be provided with your client id and client secret.  Make sure to save the provided client id and client secret.
+1. In your developer account, navigate to the "Apps" section. Click on "Create App"  
+   ![Hubspot app creation 1](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.transactional/main/docs/setup/resources/create_app_1.png)
 
-![alt text](https://github.com/module-ballerinax-hubspot.marketing.transactional/tree/main/docs/setup/resources/hubspot-new-app-client-id-secret.png)
+2. Provide the necessary details, including the app name and description.
 
-#### 2. Setup OAuth 2.0 Flow
+### Step 4: Configure the Authentication Flow
 
-Before proceeding with Quickstart, ensure you have obtained the Access Token and refresh Token using the following steps:
+1. Move to the Auth Tab.  
+   ![Hubspot app creation 2](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.transactional/main/docs/setup/resources/create_app_2.png)
 
-1. Add necessary scopes for your app based on API your using. Go to the relevate [API reference](https://developers.hubspot.com/beta-docs/reference/api),  select the API  you have  and go through the operation.
+2. In the Scopes section, add necessary scopes for your app using the "Add new scope" button.  
+   ![Hubspot set scope](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.transactional/main/docs/setup/resources/set_scope.png)
 
-You will see the scope has defined below way
+3. Add your Redirect URI in the relevant section. You can also use localhost addresses for local development purposes. Click Create App.  
+   ![Hubspot create app final](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.transactional/main/docs/setup/resources/create_app_final.png)
 
-![alt text](https://github.com/module-ballerinax-hubspot.marketing.transactional/tree/main/docs/setup/resources/hubspot-new-app-scopes.png)
+### Step 5: Get your Client ID and Client Secret
 
-2. Obtained the authorization URL (Install URL) from the Auth Section under 'Sample install URL (OAuth)' section.  It will be in this format:
+- Navigate to the Auth section of your app. Make sure to save the provided Client ID and Client Secret.  
+  ![Hubspot get credentials](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.transactional/main/docs/setup/resources/get_credentials.png)
 
-```
-https://app.hubspot.com/oauth/authorize?client_id=<client_id>&redirect_uri=<redirect_url>&scope=<scopes>
-```
-3. Copy and paste the generated URL into your browser. This will redirect you to the HubSpot authorization page.
+### Step 6: Setup Authentication Flow
 
-![alt text](https://github.com/module-ballerinax-hubspot.marketing.transactional/tree/main/docs/setup/resources/hubspot-oauth-consent-screen.png)
+Before proceeding with the Quickstart, ensure you have obtained the Access Token using the following steps:
 
-4. Once you authorize, you will be redirected to your specified redirect URI with an authorization code in the URL.
+1. Create an authorization URL using the following format:
 
-**Note**: Store the authorization code and use it promptly as it expires quickly.
+   ```
+   https://app.hubspot.com/oauth/authorize?client_id=<YOUR_CLIENT_ID>&scope=<YOUR_SCOPES>&redirect_uri=<YOUR_REDIRECT_URI>
+   ```
 
-5. Use the obtained authorization code to run the following curl command, replacing <your_client_id>, <your_redirect_url>, and <your_authorization_code> with your specific values:
+   Replace the `<YOUR_CLIENT_ID>`, `<YOUR_REDIRECT_URI>` and `<YOUR_SCOPES>` with your specific value.
+
+2. Paste it in the browser and select your developer test account to intall the app when prompted.
+3. A code will be displayed in the browser. Copy the code.
+
+   ```
+   Received code: na1-129d-860c-xxxx-xxxx-xxxxxxxxxxxx
+   ```
+
+4. Run the following ballerina program or curl command. Replace the `<YOUR_CLIENT_ID>`, `<YOUR_REDIRECT_URI`> and `<YOUR_CLIENT_SECRET>` with your specific value. Use the code you received in the above step 3 as the `<CODE>`.
+
+   - Ballerina Program
+
+   ```ballerina
+      import ballerina/http;
+      import ballerina/io;
+
+      configurable string clientId = ?;
+      configurable string clientSecret = ?;
+      configurable string redirectUri = ?;
+      configurable string code = ?;
+
+      public function main() returns error? {
+         http:Client hubspotClient = check new ("https://api.hubapi.com");
+
+         // Construct the form-urlencoded payload
+         string payload = string `grant_type=authorization_code&code=${code}&redirect_uri=${redirectUri}&client_id=${clientId}&client_secret=${clientSecret}`;
+
+         http:Request tokenRequest = new;
+         tokenRequest.setPayload(payload);
+         tokenRequest.setHeader("Content-Type", "application/x-www-form-urlencoded");
+
+         // Send POST request to fetch the access token
+         http:Response tokenResponse = check hubspotClient->post("/oauth/v1/token", tokenRequest);
+
+         // Parse and print the response
+         json responseJson = check tokenResponse.getJsonPayload();
+         io:println("Access and Refresh Token Response: ", responseJson);
+      }
+   ```
 
  - Linux/MacOS:
 ```bash
@@ -86,13 +132,13 @@ curl --request POST \
  ```json
 {
   "token_type": "bearer",
-  "refresh_token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-  "access_token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  "refresh_token": "<Refresh Token>",
+  "access_token": "<Access Token>",
   "expires_in": 1800
 }
  ```
 
- 6. Store the access token securely for use in your application.
+ 5. Store the access token securely for use in your application.
 
 
 ## Quickstart
@@ -119,7 +165,7 @@ import ballerina/oauth2;
     refreshToken = <Refresh Token>
    ```
 
-2. Instantiate a `OAuth2RefreshTokenGrantConfig` with the obtained credentials and initialize the connector with it.
+2. Instantiate a `hsmtransactional:OAuth2RefreshTokenGrantConfig` with the obtained credentials and initialize the connector with it.
 
     ```ballerina
    configurable string clientId = ?;
@@ -142,12 +188,20 @@ Now, utilize the available connector operations. A sample usecase is shown below
 #### Create a SMTP API Token
 
 ```ballerina
-hsmtransactional:SmtpApiTokenRequestEgg payload = {
-    createContact: true,
-    campaignName: "Campaign1"
-};
-hsmtransactional:SmtpApiTokenView response = check hubSpotTransactional->/smtp\-tokens.post(payload);
+public function main() returns error? {
+   hsmtransactional:SmtpApiTokenRequestEgg payload = {
+      createContact: true,
+      campaignName: "Campaign1"
+   };
+   hsmtransactional:SmtpApiTokenView response = check hubSpotTransactional->/smtp\-tokens.post(payload);
+}
 ```
+#### Run the Ballerina application
+
+```bash
+bal run
+```
+
 ## Examples
 
 The `Ballerina HubSpot Marketing Transactional Connector` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/module-ballerinax-hubspot.marketing.transactional/tree/main/examples/), covering the following use cases:
