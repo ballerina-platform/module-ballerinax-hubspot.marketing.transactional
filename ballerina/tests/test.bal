@@ -15,7 +15,6 @@
 // under the License.
 
 import ballerina/http;
-import ballerina/io;
 import ballerina/oauth2;
 import ballerina/test;
 
@@ -111,9 +110,7 @@ isolated function testGetgetTokensPage() returns error? {
         after: "0",
         campaignName: "Campaign2"
     };
-    io:println(queries);
     CollectionResponseSmtpApiTokenViewForwardPaging response = check hubSpotTransactional->/smtp\-tokens.get(queries = queries);
-    io:println(response);
     test:assertEquals(response.results.length(), 2, "Response results length is not as expected");
 }
 
