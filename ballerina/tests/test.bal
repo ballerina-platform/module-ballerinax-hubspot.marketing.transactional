@@ -16,23 +16,34 @@
 
 import ballerina/http;
 import ballerina/oauth2;
+import ballerina/os;
 import ballerina/test;
 
-configurable string clientId = ?;
-configurable string clientSecret = ?;
-configurable string refreshToken = ?;
+final boolean isLiveServer = false;
+final string serviceUrl = isLiveServer ? "https://api.hubapi.com/marketing/v3/transactional" : "http://localhost:9090";
 
-configurable boolean isLiveServer = ?;
-configurable string serviceURL = isLiveServer ? "https://api.hubapi.com/marketing/v3/transactional" : "http://localhost:9090";
+final string clientId = os:getEnv("HUBSPOT_CLIENT_ID");
+final string clientSecret = os:getEnv("HUBSPOT_CLIENT_SECRET");
+final string refreshToken = os:getEnv("HUBSPOT_REFRESH_TOKEN");
 
-OAuth2RefreshTokenGrantConfig auth = {
-    clientId: clientId,
-    clientSecret: clientSecret,
-    refreshToken: refreshToken,
-    credentialBearer: oauth2:POST_BODY_BEARER
-};
+final Client hubSpotTransactional = check initClient();
 
-final Client hubSpotTransactional = check new ({auth}, serviceURL);
+isolated function initClient() returns Client|error {
+    if isLiveServer {
+        OAuth2RefreshTokenGrantConfig auth = {
+            clientId: clientId,
+            clientSecret: clientSecret,
+            refreshToken: refreshToken,
+            credentialBearer: oauth2:POST_BODY_BEARER
+        };
+        return check new ({auth}, serviceUrl);
+    }
+    return check new ({
+        auth: {
+            token: "test-token"
+        }
+    }, serviceUrl);
+}
 
 @test:Config {
     groups: ["mock_tests"]
