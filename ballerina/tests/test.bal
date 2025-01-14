@@ -19,7 +19,7 @@ import ballerina/oauth2;
 import ballerina/os;
 import ballerina/test;
 
-final boolean isLiveServer = false;
+final boolean isLiveServer = os:getEnv("IS_LIVE_SERVER") == "true";
 final string serviceUrl = isLiveServer ? "https://api.hubapi.com/marketing/v3/transactional" : "http://localhost:9090";
 
 final string clientId = os:getEnv("HUBSPOT_CLIENT_ID");
