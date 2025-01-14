@@ -15,16 +15,19 @@
 // under the License.
 
 import ballerina/http;
+import ballerina/log;
 
-service on new http:Listener(9090) {
+listener http:Listener httpListener = new (9090);
 
-    resource function delete smtp\-tokens/[string tokenId](map<string|string[]> headers = {}) returns http:Response {
+http:Service mockService = service object {
+
+    resource isolated function delete smtp\-tokens/[string tokenId](map<string|string[]> headers = {}) returns http:Response {
         http:Response response = new;
         response.statusCode = 204;
         return response;
     }
 
-    resource function get smtp\-tokens/[string tokenId](map<string|string[]> headers = {}) returns SmtpApiTokenView {
+    resource isolated function get smtp\-tokens/[string tokenId](map<string|string[]> headers = {}) returns SmtpApiTokenView {
         return {
             "createdAt": "2025-01-08T13:58:35.669Z",
             "password": "string",
@@ -37,7 +40,7 @@ service on new http:Listener(9090) {
         };
     }
 
-    resource function post single\-email/send(@http:Payload PublicSingleSendRequestEgg payload, map<string|string[]> headers = {}) returns EmailSendStatusView {
+    resource isolated function post single\-email/send(@http:Payload PublicSingleSendRequestEgg payload, map<string|string[]> headers = {}) returns EmailSendStatusView {
         return {
             "eventId": {
                 "created": "2025-01-08T13:58:35.631Z",
@@ -52,7 +55,7 @@ service on new http:Listener(9090) {
         };
     }
 
-    resource function post smtp\-tokens(@http:Payload SmtpApiTokenRequestEgg payload, map<string|string[]> headers = {}) returns SmtpApiTokenView {
+    resource isolated function post smtp\-tokens(@http:Payload SmtpApiTokenRequestEgg payload, map<string|string[]> headers = {}) returns SmtpApiTokenView {
         return {
             "createdAt": "2025-01-08T13:58:35.710Z",
             "password": "string",
@@ -65,7 +68,7 @@ service on new http:Listener(9090) {
 
     }
 
-    resource function post smtp\-tokens/[string tokenId]/password\-reset(map<string|string[]> headers = {}) returns SmtpApiTokenView {
+    resource isolated function post smtp\-tokens/[string tokenId]/password\-reset(map<string|string[]> headers = {}) returns SmtpApiTokenView {
         return {
             "createdAt": "2025-01-08T13:58:35.733Z",
             "password": "string",
@@ -110,3 +113,13 @@ service on new http:Listener(9090) {
         return response;
     }
 };
+
+function init() returns error? {
+    if isLiveServer {
+        log:printInfo("Skiping mock server initialization as the tests are running on live server");
+        return;
+    }
+    log:printInfo("Initiating mock server");
+    check httpListener.attach(mockService, "/");
+    check httpListener.'start();
+}
