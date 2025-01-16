@@ -1,4 +1,4 @@
-# Ballerina HubSpot Marketing Transactional Connector 
+# Ballerina HubSpot Marketing Transactional Emails Connector 
 
 [![Build](https://github.com/ballerina-platform/module-ballerinax-hubspot.marketing.transactional/actions/workflows/ci.yml/badge.svg)](https://github.com/ballerina-platform/module-ballerinax-hubspot.marketing.transactional/actions/workflows/ci.yml)
 [![Trivy](https://github.com/ballerina-platform/module-ballerinax-hubspot.marketing.transactional/actions/workflows/trivy-scan.yml/badge.svg)](https://github.com/ballerina-platform/module-ballerinax-hubspot.marketing.transactional/actions/workflows/trivy-scan.yml)
@@ -6,11 +6,11 @@
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/ballerina-platform/module-ballerinax-hubspot.marketing.transactional.svg)](https://github.com/ballerina-platform/module-ballerinax-hubspot.marketing.transactional/commits/master)
 [![GitHub Issues](https://img.shields.io/github/issues/ballerina-platform/ballerina-library/module/hubspot.marketing.transactional.svg?label=Open%20Issues)](https://github.com/ballerina-platform/ballerina-library/labels/module%hubspot.marketing.transactional)
 
-# Overview
+## Overview
 
-"[HubSpot](https://www.hubspot.com/) is an AI-powered customer relationship management (CRM) platform. 
+[HubSpot](https://www.hubspot.com/) is an AI-powered customer relationship management (CRM) platform. 
 
-The ``ballerinax/hubspot.marketing.`transactional`` offers APIs to connect and interact with the [Hubspot Marketing Transactional Emails API](https://developers.hubspot.com/docs/reference/api/marketing/emails/transactional-emails) endpoints, specifically based on the [HubSpot REST API](https://developers.hubspot.com/docs/reference/api/overview)"
+The `ballerinax/hubspot.marketing.transactional` connector offers APIs to connect and interact with the [Hubspot Marketing Transactional Emails API](https://developers.hubspot.com/docs/reference/api/marketing/emails/transactional-emails) endpoints, specifically based on the [HubSpot REST API](https://developers.hubspot.com/docs/reference/api/overview)
 
 ## Setup guide
 
@@ -22,11 +22,11 @@ If you have an account already, go to the [HubSpot developer portal](https://app
 
 If you don't have a HubSpot Developer Account you can sign up to a free account [here](https://developers.hubspot.com/get-started)
 
-### Step 2 (Optional): Create a [Developer Test Account](https://developers.hubspot.com/beta-docs/getting-started/account-types#developer-test-accounts) under your account
+### Step 2 (Optional): Create a Developer Test Account
 
-Within app developer accounts, you can create developer test accounts to test apps and integrations without affecting any real HubSpot data.
+Within app developer accounts, you can create a [developer test account](https://developers.hubspot.com/beta-docs/getting-started/account-types#developer-test-accounts) under your account to test apps and integrations without affecting any real HubSpot data.
 
-**Note: These accounts are only for development and testing purposes. In production you should not use Developer Test Accounts.**
+> **Note:** These accounts are only for development and testing purposes. In production you should not use Developer Test Accounts.
 
 1. Go to Test Account section from the left sidebar.  
    ![Hubspot developer portal](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.transactional/main/docs/setup/resources/test_acc_1.png)
@@ -73,11 +73,8 @@ Before proceeding with the Quickstart, ensure you have obtained the Access Token
    Replace the `<YOUR_CLIENT_ID>`, `<YOUR_REDIRECT_URI>` and `<YOUR_SCOPES>` with your specific value.
 
 2. Paste it in the browser and select your developer test account to intall the app when prompted.
-3. A code will be displayed in the browser. Copy the code.
 
-   ```
-   Received code: na1-129d-860c-xxxx-xxxx-xxxxxxxxxxxx
-   ```
+3. A code will be displayed in the browser. Copy the code.
 
 4. Run the following ballerina program or curl command.
 
@@ -118,10 +115,10 @@ To use the `HubSpot Transactional Emails` connector in your Ballerina applicatio
 
 ### Step 1: Import the module
 
-Import the ``hubspot.marketing.`transactional`` module and `oauth2` module.
+Import the `ballerinax/hubspot.marketing.'transactional` module and `ballerina/oauth2` module..
 
 ```ballerina
-import ballerinax/hubspot.marketing.`transactional as hsmtransactional;
+import ballerinax/hubspot.marketing.'transactional as hsmtransactional;
 import ballerina/oauth2;
 ```
 

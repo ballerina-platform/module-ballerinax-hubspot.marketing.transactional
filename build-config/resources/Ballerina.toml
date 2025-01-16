@@ -5,8 +5,8 @@ name = "hubspot.marketing.transactional"
 version = "@toml.version@"
 license = ["Apache-2.0"]
 authors = ["Ballerina"]
-keywords = ["hubspot","marketing","transactional"]
-icon = "icon.png" 
+keywords = ["hubspot","marketing","transactional", "emails"]
+#icon = "icon.png" 
 repository = "https://github.com/ballerina-platform/module-ballerinax-hubspot.marketing.transactional"
 
 [build-options]

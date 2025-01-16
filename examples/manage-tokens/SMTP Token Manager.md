@@ -6,7 +6,7 @@ This use case demonstrates how the `hubspot.marketing.'transactional` API can be
 
 ### 1. Setup the Hubspot developer account
 
-Refer to the [Setup guide](README.md#setup-guide) to obtain necessary credentials (client Id, client secret, Refresh tokens).
+Refer to the [Setup guide](https://github.com/module-ballerinax-hubspot.marketing.transactional/tree/main/README.md) to obtain necessary credentials (client Id, client secret, Refresh tokens).
 
 ### 2. Configuration
 
