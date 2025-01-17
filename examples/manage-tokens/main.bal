@@ -25,9 +25,9 @@ configurable string refreshToken = ?;
 public function main() returns error? {
 
     hstransactional:OAuth2RefreshTokenGrantConfig auth = {
-        clientId: clientId,
-        clientSecret: clientSecret,
-        refreshToken: refreshToken,
+        clientId,
+        clientSecret,
+        refreshToken,
         credentialBearer: oauth2:POST_BODY_BEARER
     };
 
@@ -38,12 +38,12 @@ public function main() returns error? {
         campaignName: "Campaign1"
     };
 
-    hstransactional:SmtpApiTokenView response1 = check hubSpotTransactional->/smtp\-tokens.post(payload, {});
+    hstransactional:SmtpApiTokenView response1 = check hubSpotTransactional->/smtp\-tokens.post(payload);
     io:println(string `The created SMTP API Token has the id ${response1.id}`);
 
     string tokenId = response1.id;
 
-    hstransactional:SmtpApiTokenView response2 = check hubSpotTransactional->/smtp\-tokens/[tokenId].get({});
+    hstransactional:SmtpApiTokenView response2 = check hubSpotTransactional->/smtp\-tokens/[tokenId].get();
     io:println(string `The SMTP API Token with id ${tokenId} has the campaign name ${response2.campaignName}`);
 
     hstransactional:SmtpApiTokenView response3 = check hubSpotTransactional->/smtp\-tokens/[tokenId]/password\-reset.post();

@@ -75,7 +75,7 @@ isolated function testPostsendEmail() returns error? {
     };
 
     PublicSingleSendRequestEgg payload = {customProperties, emailId: 0, message, contactProperties};
-    EmailSendStatusView response = check hubSpotTransactional->/single\-email/send.post(payload, {});
+    EmailSendStatusView response = check hubSpotTransactional->/single\-email/send.post(payload);
 
     test:assertEquals(response.sendResult, "SENT", "Response send result is not as expected");
 }
@@ -95,7 +95,7 @@ isolated function testPostresetPassword() returns error? {
 }
 isolated function testGetgetTokenById() returns error? {
     string tokenId = "123";
-    SmtpApiTokenView response = check hubSpotTransactional->/smtp\-tokens/[tokenId].get({});
+    SmtpApiTokenView response = check hubSpotTransactional->/smtp\-tokens/[tokenId].get();
 
     test:assertEquals(response.id, "123", "Response id is not as expected");
 }
@@ -105,7 +105,7 @@ isolated function testGetgetTokenById() returns error? {
 }
 isolated function testDeletearchiveToken() returns error? {
     string tokenId = "123";
-    http:Response response = check hubSpotTransactional->/smtp\-tokens/[tokenId].delete({});
+    http:Response response = check hubSpotTransactional->/smtp\-tokens/[tokenId].delete();
 
     test:assertEquals(response.statusCode, 204, "Failed to delete the token");
 }
@@ -133,7 +133,7 @@ isolated function testPostcreateToken() returns error? {
         createContact: false,
         campaignName: "Campaign2"
     };
-    SmtpApiTokenView response = check hubSpotTransactional->/smtp\-tokens.post(payload, {});
+    SmtpApiTokenView response = check hubSpotTransactional->/smtp\-tokens.post(payload);
 
     test:assertEquals(response.campaignName, "Campaign2", "Response campaign name is not as expected");
 }
