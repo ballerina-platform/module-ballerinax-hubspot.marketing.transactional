@@ -330,7 +330,7 @@ modules = [
 [[package]]
 org = "ballerinax"
 name = "hubspot.marketing.transactional"
-version = "0.1.1"
+version = "1.0.0"
 dependencies = [
 	{org = "ballerina", name = "http"},
 	{org = "ballerina", name = "log"},
