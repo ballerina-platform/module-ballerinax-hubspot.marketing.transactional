@@ -14,7 +14,6 @@
 // specific language governing permissions and limitations
 // under the License.
 
-import ballerina/http;
 import ballerina/oauth2;
 import ballerina/os;
 import ballerina/test;
@@ -105,9 +104,7 @@ isolated function testGetgetTokenById() returns error? {
 }
 isolated function testDeletearchiveToken() returns error? {
     string tokenId = "123";
-    http:Response response = check hubSpotTransactional->/smtp\-tokens/[tokenId].delete();
-
-    test:assertEquals(response.statusCode, 204, "Failed to delete the token");
+    _ = check hubSpotTransactional->/smtp\-tokens/[tokenId].delete();
 }
 
 @test:Config {
@@ -115,7 +112,7 @@ isolated function testDeletearchiveToken() returns error? {
 }
 isolated function testGetgetTokensPage() returns error? {
 
-    GetMarketingV3TransactionalSmtpTokens_gettokenspageQueries queries = {
+    GetMarketingV3TransactionalSmtpTokensGetTokensPageQueries queries = {
         'limit: 2,
         emailCampaignId: "344",
         after: "0",
