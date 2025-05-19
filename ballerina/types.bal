@@ -31,6 +31,7 @@ public type PublicSingleSendRequestEgg record {
     record {|record {}...;|} customProperties?;
     # The content ID for the transactional email, which can be found in email tool UI
     int:Signed32 emailId;
+    # A JSON object containing anything you want to override
     PublicSingleSendEmail message;
     # The contactProperties field is a map of contact property values. Each contact property value contains a name and value property. Each property will get set on the contact record and will be visible in the template under {{ contact.NAME }}. Use these properties when you want to set a contact property while you’re sending the email. For example, when sending a reciept you may want to set a last_paid_date property, as the sending of the receipt will have information about the last payment
     record {|string...;|} contactProperties?;
@@ -72,6 +73,7 @@ public type PublicSingleSendEmail record {
 
 # Describes the status of an email send request
 public type EmailSendStatusView record {
+    # The ID of a send event
     EventIdView eventId?;
     # Time when the send was completed
     string completedAt?;
@@ -127,9 +129,7 @@ public type OAuth2RefreshTokenGrantConfig record {|
 |};
 
 public type NextPage record {
-    # 
     string link?;
-    # 
     string after;
 };
 

@@ -17,6 +17,7 @@
 // specific language governing permissions and limitations
 // under the License.
 
+import ballerina/data.jsondata;
 import ballerina/http;
 
 public isolated client class Client {
@@ -38,6 +39,11 @@ public isolated client class Client {
         self.clientEp = check new (serviceUrl, httpClientConfig);
     }
 
+    # Send a single transactional email asynchronously.
+    #
+    # + headers - Headers to be sent with the request 
+    # + payload - A request object describing the email to send 
+    # + return - successful operation 
     resource isolated function post single\-email/send(PublicSingleSendRequestEgg payload, map<string|string[]> headers = {}) returns EmailSendStatusView|error {
         string resourcePath = string `/single-email/send`;
         map<anydata> headerValues = {...headers};
@@ -46,11 +52,16 @@ public isolated client class Client {
         }
         map<string|string[]> httpHeaders = http:getHeaderMap(headerValues);
         http:Request request = new;
-        json jsonBody = payload.toJson();
+        json jsonBody = jsondata:toJson(payload);
         request.setPayload(jsonBody, "application/json");
         return self.clientEp->post(resourcePath, request, httpHeaders);
     }
 
+    # Query SMTP API tokens by campaign name or an emailCampaignId.
+    #
+    # + headers - Headers to be sent with the request 
+    # + queries - Queries to be sent with the request 
+    # + return - successful operation 
     resource isolated function get smtp\-tokens(map<string|string[]> headers = {}, *GetMarketingV3TransactionalSmtpTokensGetTokensPageQueries queries) returns CollectionResponseSmtpApiTokenViewForwardPaging|error {
         string resourcePath = string `/smtp-tokens`;
         map<anydata> headerValues = {...headers};
@@ -62,6 +73,11 @@ public isolated client class Client {
         return self.clientEp->get(resourcePath, httpHeaders);
     }
 
+    # Create a SMTP API token.
+    #
+    # + headers - Headers to be sent with the request 
+    # + payload - A request object that includes the campaign name tied to the token and whether contacts should be created for email recipients 
+    # + return - successful operation 
     resource isolated function post smtp\-tokens(SmtpApiTokenRequestEgg payload, map<string|string[]> headers = {}) returns SmtpApiTokenView|error {
         string resourcePath = string `/smtp-tokens`;
         map<anydata> headerValues = {...headers};
@@ -70,11 +86,16 @@ public isolated client class Client {
         }
         map<string|string[]> httpHeaders = http:getHeaderMap(headerValues);
         http:Request request = new;
-        json jsonBody = payload.toJson();
+        json jsonBody = jsondata:toJson(payload);
         request.setPayload(jsonBody, "application/json");
         return self.clientEp->post(resourcePath, request, httpHeaders);
     }
 
+    # Reset the password of an existing token.
+    #
+    # + tokenId - Identifier generated when a token is created
+    # + headers - Headers to be sent with the request 
+    # + return - successful operation 
     resource isolated function post smtp\-tokens/[string tokenId]/password\-reset(map<string|string[]> headers = {}) returns SmtpApiTokenView|error {
         string resourcePath = string `/smtp-tokens/${getEncodedUri(tokenId)}/password-reset`;
         map<anydata> headerValues = {...headers};
@@ -86,6 +107,11 @@ public isolated client class Client {
         return self.clientEp->post(resourcePath, request, httpHeaders);
     }
 
+    # Query a single token by ID.
+    #
+    # + tokenId - Identifier generated when a token is created
+    # + headers - Headers to be sent with the request 
+    # + return - successful operation 
     resource isolated function get smtp\-tokens/[string tokenId](map<string|string[]> headers = {}) returns SmtpApiTokenView|error {
         string resourcePath = string `/smtp-tokens/${getEncodedUri(tokenId)}`;
         map<anydata> headerValues = {...headers};
@@ -96,6 +122,11 @@ public isolated client class Client {
         return self.clientEp->get(resourcePath, httpHeaders);
     }
 
+    # Delete a single token by ID.
+    #
+    # + tokenId - Identifier generated when a token is created
+    # + headers - Headers to be sent with the request 
+    # + return - No content 
     resource isolated function delete smtp\-tokens/[string tokenId](map<string|string[]> headers = {}) returns error? {
         string resourcePath = string `/smtp-tokens/${getEncodedUri(tokenId)}`;
         map<anydata> headerValues = {...headers};
