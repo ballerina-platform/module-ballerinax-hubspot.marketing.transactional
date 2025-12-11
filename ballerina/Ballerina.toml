@@ -5,7 +5,7 @@ name = "hubspot.marketing.transactional"
 version = "1.0.0"
 license = ["Apache-2.0"]
 authors = ["Ballerina"]
-keywords = ["hubspot","marketing","transactional", "emails"]
+keywords = ["marketing", "transactional", "emails", "Vendor/HubSpot", "Area/Social Media Marketing", "Type/Connector"]
 repository = "https://github.com/ballerina-platform/module-ballerinax-hubspot.marketing.transactional"
 
 [build-options]
