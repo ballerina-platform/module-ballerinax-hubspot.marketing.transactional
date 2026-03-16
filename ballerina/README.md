@@ -2,7 +2,14 @@
 
 [HubSpot](https://www.hubspot.com/) is an AI-powered customer relationship management (CRM) platform.
 
-The `ballerinax/hubspot.marketing.transactional` connector offers APIs to connect and interact with the [Hubspot Marketing Transactional Emails API](https://developers.hubspot.com/docs/reference/api/marketing/emails/transactional-emails) endpoints, specifically based on the [HubSpot REST API](https://developers.hubspot.com/docs/reference/api/overview).
+The HubSpot Marketing Transactional Emails connector offers APIs to connect and interact with the [Hubspot Marketing Transactional Emails API](https://developers.hubspot.com/docs/reference/api/marketing/emails/transactional-emails) endpoints.
+
+### Key Features
+
+- Connect and interact with HubSpot Marketing Transactional Emails API endpoints
+- Support for HubSpot REST API
+- Manage SMTP API tokens efficiently
+- Send and track transactional emails
 
 ## Setup guide
 
