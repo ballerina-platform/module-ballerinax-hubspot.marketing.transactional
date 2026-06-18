@@ -2,7 +2,7 @@
 
 [HubSpot](https://www.hubspot.com/) is an AI-powered customer relationship management (CRM) platform.
 
-The HubSpot Marketing Transactional Emails connector offers APIs to connect and interact with the [Hubspot Marketing Transactional Emails API](https://developers.hubspot.com/docs/reference/api/marketing/emails/transactional-emails) endpoints.
+The HubSpot Marketing Transactional Emails connector offers APIs to connect and interact with the [HubSpot Marketing Transactional Emails API](https://developers.hubspot.com/docs/reference/api/marketing/emails/transactional-emails) endpoints.
 
 ### Key Features
 
@@ -28,36 +28,36 @@ Within app developer accounts, you can create a [developer test account](https:/
 > **Note:** These accounts are only for development and testing purposes. In production you should not use Developer Test Accounts.
 
 1. Go to Test Account section from the left sidebar.
-   ![Hubspot developer portal](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.transactional/main/docs/setup/resources/test_acc_1.png)
+   ![HubSpot developer portal](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.transactional/main/docs/setup/resources/test_acc_1.png)
 
 2. Click Create developer test account.
-   ![Hubspot developer testacc](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.transactional/main/docs/setup/resources/test_acc_2.png)
+   ![HubSpot developer testacc](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.transactional/main/docs/setup/resources/test_acc_2.png)
 
 3. In the dialogue box, give a name to your test account and click create.
-   ![Hubspot developer testacc3](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.transactional/main/docs/setup/resources/test_acc_3.png)
+   ![HubSpot developer testacc3](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.transactional/main/docs/setup/resources/test_acc_3.png)
 
 ### Step 3: Create a HubSpot App under your account
 
 1. In your developer account, navigate to the "Apps" section. Click on "Create App"
-   ![Hubspot app creation 1](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.transactional/main/docs/setup/resources/create_app_1.png)
+   ![HubSpot app creation 1](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.transactional/main/docs/setup/resources/create_app_1.png)
 
 2. Provide the necessary details, including the app name and description.
 
 ### Step 4: Configure the Authentication Flow
 
 1. Move to the Auth Tab.
-   ![Hubspot app creation 2](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.transactional/main/docs/setup/resources/create_app_2.png)
+   ![HubSpot app creation 2](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.transactional/main/docs/setup/resources/create_app_2.png)
 
 2. In the Scopes section, add necessary scopes for your app using the "Add new scope" button.
-   ![Hubspot set scope](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.transactional/main/docs/setup/resources/set_scope.png)
+   ![HubSpot set scope](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.transactional/main/docs/setup/resources/set_scope.png)
 
 3. Add your Redirect URI in the relevant section. You can also use localhost addresses for local development purposes. Click Create App.
-   ![Hubspot create app final](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.transactional/main/docs/setup/resources/create_app_final.png)
+   ![HubSpot create app final](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.transactional/main/docs/setup/resources/create_app_final.png)
 
 ### Step 5: Get your Client ID and Client Secret
 
 - Navigate to the Auth section of your app. Make sure to save the provided Client ID and Client Secret.
-  ![Hubspot get credentials](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.transactional/main/docs/setup/resources/get_credentials.png)
+  ![HubSpot get credentials](https://raw.githubusercontent.com/ballerina-platform/module-ballerinax-hubspot.marketing.transactional/main/docs/setup/resources/get_credentials.png)
 
 ### Step 6: Setup Authentication Flow
 
@@ -171,6 +171,6 @@ bal run
 
 ## Examples
 
-The `Ballerina HubSpot Marketing Transactional Connector` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/module-ballerinax-hubspot.marketing.transactional/tree/main/examples/), covering the following use cases:
+The `Ballerina HubSpot Marketing Transactional Connector` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/ballerina-platform/module-ballerinax-hubspot.marketing.transactional/tree/main/examples/), covering the following use cases:
 
-1. [Manage Tokens](https://github.com/module-ballerinax-hubspot.marketing.transactional/tree/main/examples/manage-tokens) - see how the Hubspot API can be used to create SMTP API token and query it and resetting the password of an existing token.
+1. [Manage Tokens](https://github.com/ballerina-platform/module-ballerinax-hubspot.marketing.transactional/tree/main/examples/manage-tokens) - see how the HubSpot API can be used to create SMTP API token and query it and resetting the password of an existing token.
