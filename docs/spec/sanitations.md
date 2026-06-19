@@ -1,6 +1,6 @@
-_Author_:  <!-- TODO: Add author name --> \
-_Created_: <!-- TODO: Add date --> \
-_Updated_: <!-- TODO: Add date --> \
+_Author_:  @SivakumarAbisherk \
+_Created_: 2025/01/03 \
+_Updated_: 2026/06/18 \
 _Edition_: Swan Lake
 
 # Sanitation for OpenAPI specification
@@ -10,6 +10,7 @@ The OpenAPI specification is obtained from [Marketing Transactional API](https:/
 These changes are done in order to improve the overall usability, and as workarounds for some known language limitations.
 
 1. `date-time` type mentioned in `openapi.json` was changed to `datetime`.
+
 2. Change the url property of the servers object:
 
     * Original: `https://api.hubapi.com`

@@ -23,7 +23,7 @@ import ballerina/http;
 public isolated client class Client {
     final http:Client clientEp;
     final readonly & ApiKeysConfig? apiKeyConfig;
-    # Gets invoked to initialize the `connector`.
+    # Gets invoked to initialize the `connector`
     #
     # + config - The configurations to be used when initializing the `connector` 
     # + serviceUrl - URL of the target service 
@@ -39,7 +39,7 @@ public isolated client class Client {
         self.clientEp = check new (serviceUrl, httpClientConfig);
     }
 
-    # Send a single transactional email asynchronously.
+    # Send a transactional email async
     #
     # + headers - Headers to be sent with the request 
     # + payload - A request object describing the email to send 
@@ -57,7 +57,7 @@ public isolated client class Client {
         return self.clientEp->post(resourcePath, request, httpHeaders);
     }
 
-    # Query SMTP API tokens by campaign name or an emailCampaignId.
+    # Query SMTP API tokens by campaign
     #
     # + headers - Headers to be sent with the request 
     # + queries - Queries to be sent with the request 
@@ -73,7 +73,7 @@ public isolated client class Client {
         return self.clientEp->get(resourcePath, httpHeaders);
     }
 
-    # Create a SMTP API token.
+    # Create a SMTP API token
     #
     # + headers - Headers to be sent with the request 
     # + payload - A request object that includes the campaign name tied to the token and whether contacts should be created for email recipients 
@@ -91,7 +91,7 @@ public isolated client class Client {
         return self.clientEp->post(resourcePath, request, httpHeaders);
     }
 
-    # Reset the password of an existing token.
+    # Reset an existing token's password
     #
     # + tokenId - Identifier generated when a token is created
     # + headers - Headers to be sent with the request 
@@ -107,7 +107,7 @@ public isolated client class Client {
         return self.clientEp->post(resourcePath, request, httpHeaders);
     }
 
-    # Query a single token by ID.
+    # Query a single token by ID
     #
     # + tokenId - Identifier generated when a token is created
     # + headers - Headers to be sent with the request 
@@ -122,7 +122,7 @@ public isolated client class Client {
         return self.clientEp->get(resourcePath, httpHeaders);
     }
 
-    # Delete a single token by ID.
+    # Delete a single token by ID
     #
     # + tokenId - Identifier generated when a token is created
     # + headers - Headers to be sent with the request 
